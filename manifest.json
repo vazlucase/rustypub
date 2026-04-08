@@ -1,0 +1,40 @@
+{
+  "name": "Rusty Pub",
+  "short_name": "RustyPub",
+  "description": "Templo do rock com cerveja artesanal",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["food", "lifestyle", "entertainment"],
+  "screenshots": [
+    {
+      "src": "https://images.unsplash.com/photo-1572116466296-b4f0f41c2e4b?w=1280&h=720&fit=crop",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "label": "Rusty Pub — Página Inicial"
+    }
+  ]
+}

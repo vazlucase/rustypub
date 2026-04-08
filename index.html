@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Rusty Pub | Chopp, Brejas e Rock'n'roll em Belém</title>
+  <meta name="description" content="O bar de rock de Belém-PA. Chopps artesanais, shows ao vivo toda semana e cardápio completo. Reservas pelo WhatsApp.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0705">
+  <link rel="canonical" href="https://www.rustypub.com.br">
+
+  <!-- CSP: protege contra XSS e injeção de scripts externos não autorizados -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://images.unsplash.com https://www.rustypub.com.br; connect-src 'self'; frame-ancestors 'none';">
+  <!-- Impede clickjacking -->
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <!-- Força HTTPS -->
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
+  <meta property="og:title" content="Rusty Pub | Chopp, Brejas e Rock'n'roll">
+  <meta property="og:description" content="O bar de rock de Belém-PA. Shows ao vivo, chopps artesanais e cardápio completo.">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="https://www.rustypub.com.br">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rusty Pub | Chopp, Brejas e Rock'n'roll">
+  <meta name="twitter:image" content="">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BarOrPub","name":"Rusty Pub","description":"Bar de rock em Belém com chopps artesanais e música ao vivo.","url":"https://www.rustypub.com.br","telephone":"+55-91-99156-7596","email":"contato@rustypub.com.br","address":{"@type":"PostalAddress","streetAddress":"Tv. Vileta, 2509","addressLocality":"Belém","addressRegion":"PA","addressCountry":"BR"},"openingHours":["Mo-Sa 18:00-02:00"],"priceRange":"$$","servesCuisine":"Bar Food","geo":{"@type":"GeoCoordinates","latitude":-1.4558,"longitude":-48.4902},"hasMap":"https://maps.google.com/?q=Tv.+Vileta,+2509,+Belém,+PA","sameAs":["https://www.instagram.com/rusty_pub"]}
+  </script>
+
+  <!-- Preload da imagem LCP (hero background) — melhora CLS e LCP -->
+  <link rel="preload" as="image" href="/assets/hero-bg.jpg" fetchpriority="high">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/css/lp.css">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+  <header class="header" id="header" role="banner">
+    <div class="header__inner">
+      <a href="#home" class="header__logo" aria-label="Rusty Pub — início">
+        <img src="/assets/rusty.webp" alt="Logo Rusty Pub" width="42" height="38" class="header__logo-img">
+        <span class="header__logo-text">RUSTY<em>PUB</em></span>
+      </a>
+      <nav class="header__nav" aria-label="Navegação principal" style="bottom: -1024px;">
+        <ul id="nav-menu" class="nav-menu" role="list">
+          <li><a href="#home">INÍCIO</a></li>
+          <li><a href="#cardapio">CARDÁPIO</a></li>
+          <li><a href="#galeria">GALERIA</a></li>
+          <li><a href="#contato">CONTATO</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="tel:+5591991567596"
+           class="btn btn--fire header__cta"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Reservar mesa pelo WhatsApp">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <span>Ligar</span>
+        </a>
+        <button class="header__toggle menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-h1">
+      <div class="hero__bg" id="hero-bg" aria-hidden="true">
+        <div class="hero__bg-noise"></div>
+        <div class="hero__bg-vignette"></div>
+      </div>
+      <div class="hero__badge" aria-label="Próximo show">
+        <span class="hero__badge-dot"></span>
+        #VEMPRORUSTYPUB
+      </div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">
+          <span class="hero__eyebrow-line"></span>
+          Belém-PA · Est. 2015
+          <span class="hero__eyebrow-line"></span>
+        </p>
+        <h1 class="hero__title" id="hero-h1">
+          VEM PRO
+          <span class="hero__title--accent">Rusty PUB</span>
+        </h1>
+        <p class="hero__sub">
+          Chopp, Brejas, Rock'n'roll<br>
+          e um cardápio que você não vai esquecer.
+        </p>
+        <div class="hero__actions">
+          <a href="https://www.instagram.com/rusty_pub"
+             class="btn btn--fire btn--lg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+            Instagram
+          </a>
+          <a href="#cardapio" class="btn btn--ghost btn--lg">
+            Ver Cardápio <i class="fas fa-arrow-down" aria-hidden="true"></i>
+          </a>
+        </div>
+        <p class="hero__trust">
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <strong>+2.400 pessoas</strong> já passaram por aqui
+        </p>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="Números do Rusty Pub">
+      <div class="stats__inner">
+        <div class="stats__item reveal">
+          <span class="stats__num" data-target="10"></span>
+          <span class="stats__label">Anos de rock</span>
+        </div>
+        <div class="stats__divider" aria-hidden="true">✦</div>
+        <div class="stats__item reveal reveal-delay-2">
+          <span class="stats__num" data-target="5000">0</span><span class="stats__num--suffix"></span>
+          <span class="stats__label">Chopps servidos</span>
+        </div>
+        <div class="stats__divider" aria-hidden="true">✦</div>
+        <div class="stats__item reveal reveal-delay-3">
+          <span class="stats__num" data-target="4.5">★</span><span class="stats__num--suffix"></span>
+          <span class="stats__label">Avaliação no Google</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>ROCK AO VIVO</span><b>✦</b>
+        <span>CHOPP ARTESANAL</span><b>✦</b>
+        <span>TODA SEMANA</span><b>✦</b>
+        <span>HAMBÚRGUERES ARTESANAIS</span><b>✦</b>
+        <span>RUSTY PUB BELÉM</span><b>✦</b>
+        <span>DRINKS AUTORAIS</span><b>✦</b>
+        <span>ROCK AO VIVO</span><b>✦</b>
+        <span>CHOPP ARTESANAL</span><b>✦</b>
+        <span>TODA SEMANA</span><b>✦</b>
+        <span>HAMBÚRGUERES ARTESANAIS</span><b>✦</b>
+        <span>RUSTY PUB BELÉM</span><b>✦</b>
+        <span>DRINKS AUTORAIS</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- CARDÁPIO COMPLETO -->
+    <section id="cardapio" class="section cardapio" aria-labelledby="cardapio-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">O que servimos</span>
+          <h2 id="cardapio-title" class="section-title">CARDÁPIO<br><em>COMPLETO</em></h2>
+          <p class="section-desc">Do petisco ao drink, tudo preparado com capricho.</p>
+        </div>
+
+        <div class="menu-tabs" role="tablist" aria-label="Categorias do cardápio">
+          <button class="menu-tab active" role="tab" aria-selected="true"  aria-controls="tab-comidas" id="btn-comidas" data-tab="comidas">🍽️ Comidas</button>
+          <button class="menu-tab"        role="tab" aria-selected="false" aria-controls="tab-bebidas" id="btn-bebidas" data-tab="bebidas">🍺 Bebidas</button>
+        </div>
+
+        <!-- COMIDAS -->
+        <div class="menu-panel" id="tab-comidas" role="tabpanel" aria-labelledby="btn-comidas">
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>ENTRADAS</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>FERRARI</strong>
+                  <span>Batata Frita + Maionese Artesanal</span>
+                </div>
+                <span class="menu-item__price">R$ 25,99</span>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>ASTON MARTIN</strong>
+                  <span>Linguiça Artesanal de Jambu · Acompanha torrada, farofa e molho</span>
+                </div>
+                <span class="menu-item__price">R$ 39,99</span>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>TROLLER</strong>
+                  <span>Porção de Pastel (6 unid) · Queijo, queijo c/ presunto, doce de leite com queijo</span>
+                </div>
+                <span class="menu-item__price">R$ 39,99</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>HAMBÚRGUERES</span></h3>
+            <p class="menu-category__obs">Todos servidos no pão brioche com blend de 160g</p>
+            <div class="menu-items-grid">
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>McLAREN</strong>
+                  <span>Ovo frito, queijo prato, creme de queijo, alface e tomate</span>
+                </div>
+                <span class="menu-item__price">R$ 36,99</span>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>JAGUAR</strong>
+                  <span>Creme de queijo, bacon, queijo coalho e geleia de pimenta</span>
+                </div>
+                <span class="menu-item__price">R$ 37,99</span>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>CADILLAC</strong>
+                  <span>Cebola caramelizada, creme de queijo, queijo prato, alface e tomate</span>
+                </div>
+                <span class="menu-item__price">R$ 37,99</span>
+              </div>
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>CORVETTE</strong>
+                  <span>Creme de queijo, queijo prato, alface, tomate e bacon</span>
+                </div>
+                <span class="menu-item__price">R$ 37,99</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>ADICIONAIS</span></h3>
+            <div class="menu-addons-grid">
+              <div class="menu-addon"><span>Blend extra</span><span>R$ 11,99</span></div>
+              <div class="menu-addon"><span>Ovo frito</span><span>R$ 2,99</span></div>
+              <div class="menu-addon"><span>Bacon</span><span>R$ 4,99</span></div>
+              <div class="menu-addon"><span>Molho da casa</span><span>R$ 1,99</span></div>
+              <div class="menu-addon"><span>Cebola caramelizada</span><span>R$ 4,99</span></div>
+              <div class="menu-addon"><span>Geleia de Pimenta</span><span>R$ 1,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>PIZZAS <em class="menu-category__price-tag">R$ 65,00 · 35cm</em></span></h3>
+            <p class="menu-category__obs">Todas preparadas com muçarela, molho de tomate e ingredientes especiais de cada sabor</p>
+            <div class="menu-pizza-grid">
+              <div class="menu-pizza-item">Marguerita</div>
+              <div class="menu-pizza-item">Quatro Queijos</div>
+              <div class="menu-pizza-item">Calabresa</div>
+              <div class="menu-pizza-item">Mista da Casa</div>
+              <div class="menu-pizza-item">Mista</div>
+              <div class="menu-pizza-item">Gorgonzola com Uva</div>
+              <div class="menu-pizza-item">Napolitana</div>
+              <div class="menu-pizza-item">Qualho, Bacon &amp; Geleia</div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>SOBREMESA</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item">
+                <div class="menu-item__info">
+                  <strong>ALFAJOR PARAENSE</strong>
+                  <span>Creme de cupuaçu + alfajor recheado + farofa de castanhas</span>
+                </div>
+                <span class="menu-item__price">R$ 24,99</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /tab-comidas -->
+
+        <!-- BEBIDAS -->
+        <div class="menu-panel hidden" id="tab-bebidas" role="tabpanel" aria-labelledby="btn-bebidas">
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>CAIPI'S</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Caipirinha</strong></div><span class="menu-item__price">R$ 24,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Caipirinha de Jambu</strong></div><span class="menu-item__price">R$ 25,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Caipiroska Nacional</strong></div><span class="menu-item__price">R$ 27,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Caipiroska Importada</strong></div><span class="menu-item__price">R$ 31,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>DRINKS &amp; GINS</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Margarita</strong></div><span class="menu-item__price">R$ 24,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Negroni</strong></div><span class="menu-item__price">R$ 29,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Campari Tonic</strong></div><span class="menu-item__price">R$ 29,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Aperol Spritz</strong></div><span class="menu-item__price">R$ 34,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Gin Tônica</strong></div><span class="menu-item__price">R$ 29,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>LINHA MONSTER <em class="menu-category__price-tag">R$ 39,99</em></span></h3>
+            <p class="menu-category__obs">Gin/Vodka + energético + frutas + hortelã</p>
+            <div class="menu-pizza-grid">
+              <div class="menu-pizza-item">Tropical Monster</div>
+              <div class="menu-pizza-item">Violet Monster</div>
+              <div class="menu-pizza-item">Summer Monster (zero)</div>
+              <div class="menu-pizza-item">Monster Paradise</div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>CHOPP 300ml</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Cerpa Tijuca</strong></div><span class="menu-item__price">R$ 11,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Cerpa Export</strong></div><span class="menu-item__price">R$ 14,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>CERVEJAS 600ml</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Tijuca Puro Malte</strong></div><span class="menu-item__price">R$ 14,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Cerpa Export</strong></div><span class="menu-item__price">R$ 17,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Heineken</strong></div><span class="menu-item__price">R$ 18,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Kroland</strong></div><span class="menu-item__price">R$ 15,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>LONG NECK</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Kroland</strong></div><span class="menu-item__price">R$ 9,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Tijuca Pilsen</strong></div><span class="menu-item__price">R$ 8,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Tijuca Silver</strong></div><span class="menu-item__price">R$ 11,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Heineken</strong></div><span class="menu-item__price">R$ 12,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Ice Limão</strong></div><span class="menu-item__price">R$ 11,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Grape Cool</strong></div><span class="menu-item__price">R$ 14,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Baden (500ml)</strong></div><span class="menu-item__price">R$ 25,00</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>DOSES</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Whisky</strong></div><span class="menu-item__price">R$ 24,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Tequila</strong></div><span class="menu-item__price">R$ 14,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Cachaça</strong></div><span class="menu-item__price">R$ 7,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-category reveal">
+            <h3 class="menu-category__title"><span>BEBIDAS NÃO ALCOÓLICAS</span></h3>
+            <div class="menu-items-grid">
+              <div class="menu-item"><div class="menu-item__info"><strong>Água (com/gás)</strong></div><span class="menu-item__price">R$ 4,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Refrigerante</strong></div><span class="menu-item__price">R$ 6,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Suco Del Valle</strong></div><span class="menu-item__price">R$ 7,99</span></div>
+              <div class="menu-item"><div class="menu-item__info"><strong>Energético Monster</strong></div><span class="menu-item__price">R$ 12,99</span></div>
+            </div>
+          </div>
+
+          <div class="menu-obs reveal">
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
+            <div>
+              <strong>Observações</strong>
+              <p>Couvert artístico: R$ 10,00 por pessoa · Consumo de alimentos externos: + R$ 10,00</p>
+            </div>
+          </div>
+
+        </div><!-- /tab-bebidas -->
+
+        <div class="cardapio-cta reveal">
+          <a href="https://wa.me/5591991567596?text=Oi!%20Quero%20fazer%20um%20pedido%20no%20Rusty%20Pub."
+             class="btn btn--fire" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            Fazer Pedido pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria" class="section galeria" aria-labelledby="galeria-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Fotos reais</span>
+          <h2 id="galeria-title" class="section-title">VEJA COMO<br><em>É POR AQUI</em></h2>
+          <p class="section-desc">Sem filtro, sem encenação. É assim que o Rusty é toda noite.</p>
+        </div>
+        <div class="gallery-grid" id="gallery-grid" role="list" aria-label="Fotos do Rusty Pub"></div>
+        <div class="galeria-cta reveal">
+          <a href="https://www.instagram.com/rusty_pub" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+            <i class="fab fa-instagram" aria-hidden="true"></i> Mais fotos no Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMÓRIAS -->
+    <section id="eventos-passados" class="section memorias" aria-labelledby="passados-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">História</span>
+          <h2 id="passados-title" class="section-title">SHOWS QUE<br><em>FICARAM NA MEMÓRIA</em></h2>
+        </div>
+        <div class="past-grid" id="past-grid" aria-label="Eventos passados"></div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="section depoimentos" aria-labelledby="dep-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">O que dizem</span>
+          <h2 id="dep-title" class="section-title">A GALERA<br><em>APROVOU</em></h2>
+        </div>
+        <div class="dep-grid">
+          <blockquote class="dep-card reveal">
+            <div class="dep-card__stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"O melhor bar de Belém, sem discussão. Os hambúrgueres são absurdos e os shows são sempre incríveis. Vou toda semana."</p>
+            <footer><strong>Mariana S.</strong> · Google Reviews</footer>
+          </blockquote>
+          <blockquote class="dep-card reveal reveal-delay-1">
+            <div class="dep-card__stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"Lugar com alma. Não é só um bar, é uma experiência. O chopp é gelado, a música é alta e a energia é única."</p>
+            <footer><strong>Rafael T.</strong> · Google Reviews</footer>
+          </blockquote>
+          <blockquote class="dep-card reveal reveal-delay-2">
+            <div class="dep-card__stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"Fui pela primeira vez e já fiz reserva pro próximo show. Atendimento perfeito, ambiente sensacional."</p>
+            <footer><strong>Camila R.</strong> · Google Reviews</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final" aria-labelledby="cta-final-title">
+      <div class="cta-final__bg" aria-hidden="true"></div>
+      <div class="cta-final__content reveal">
+        <span class="section-tag section-tag--light">Não perca</span>
+        <h2 id="cta-final-title" class="cta-final__title">HAPPY HOUR<br>NESSA SEXTA</h2>
+        <p class="cta-final__desc">As mesas da frente já estão quase todas reservadas. Garanta a sua agora pelo WhatsApp — é rápido e sem complicação.</p>
+        <div class="cta-final__actions">
+          <a href="https://wa.me/5591991567596?text=Oi!%20Quero%20fazer%20um%20pedido%20no%20Rusty%20Pub."
+             class="btn btn--fire btn--xl" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            Entrar em Contato
+          </a>
+          <a href="tel:+5591991567596" class="btn btn--ghost">
+            <i class="fas fa-phone-alt" aria-hidden="true"></i>
+            Ligar Agora
+          </a>
+        </div>
+        <p class="cta-final__reassurance">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          Reserva gratuita · Sem cadastro
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contato" class="footer" role="contentinfo">
+    <div class="footer__inner container">
+      <div class="footer__brand reveal">
+        <img src="/assets/rusty.webp" alt="Logo Rusty Pub" width="52" height="47" class="footer__logo">
+        <p class="footer__tagline">Chopp, Brejas e Rock'n'roll<br>em Belém desde 2015.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/rusty_pub" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/5591991567596" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer__info reveal reveal-delay-1">
+        <h4>Onde estamos</h4>
+        <address>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Tv. Vileta, 2509 — Belém-PA</p>
+          <p><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:+5591991567596">(91) 99156-7596</a></p>
+          <p><i class="fas fa-clock" aria-hidden="true"></i> Seg a Sáb: 18h</p>
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Rusty Pub · Vem pro Rusty! 🍺</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5591991567596?text=Oi!%20Quero%20saber%20mais%20sobre%20o%20Rusty%20Pub."
+     class="wa-float" target="_blank" rel="noopener noreferrer"
+     aria-label="Fale pelo WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span class="wa-tooltip">Fale conosco!</span>
+  </a>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar foto" hidden>
+    <button class="lightbox__close" id="lightbox-close" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <button class="lightbox__prev" id="lightbox-prev" aria-label="Foto anterior"><i class="fas fa-chevron-left"></i></button>
+    <img src="" alt="" class="lightbox__img" id="lightbox-img">
+    <button class="lightbox__next" id="lightbox-next" aria-label="Próxima foto"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
