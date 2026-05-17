@@ -1124,7 +1124,7 @@ address { font-style: normal; }
 }
 .menu-item__price {
   font-family: var(--f-cond);
-  font-size: .95rem;
+  font-size: .128rem;
   font-weight: 800;
   color: var(--c-amber);
   white-space: nowrap;
