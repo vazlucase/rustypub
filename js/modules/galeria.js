@@ -5,9 +5,9 @@
 import { showEmptyState } from '../utils/helpers.js';
 
 const galeriaFotos = [
-  { url: '/assets/gale1.webp', alt: 'Show de rock no Rusty Pub' },
-  { url: '/assets/gale2.webp', alt: 'Chopps artesanais gelados' },
-  { url: '/assets/gale3.webp', alt: 'Público animado na pista' },];
+  { url: '/assets/gale1.webp', alt: 'a galera' },
+  { url: '/assets/gale2.webp', alt: 'a galera' },
+  { url: '/assets/gale3.webp', alt: 'a galera' },];
 
 export function renderGaleria() {
   const container = document.getElementById('gallery-grid');
