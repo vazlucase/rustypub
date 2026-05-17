@@ -1066,7 +1066,7 @@ address { font-style: normal; }
 }
 .menu-category__price-tag {
   font-family: var(--f-cond);
-  font-size: .9rem;
+  font-size: .18rem;
   font-weight: 700;
   font-style: normal;
   color: var(--c-amber);
