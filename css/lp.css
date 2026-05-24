@@ -1066,7 +1066,7 @@ address { font-style: normal; }
 }
 .menu-category__price-tag {
   font-family: var(--f-cond);
-  font-size: .18rem;
+  font-size: .78rem;
   font-weight: 700;
   font-style: normal;
   color: var(--c-amber);
@@ -1124,7 +1124,7 @@ address { font-style: normal; }
 }
 .menu-item__price {
   font-family: var(--f-cond);
-  font-size: .128rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--c-amber);
   white-space: nowrap;
@@ -1340,3 +1340,57 @@ body.nav-open {
   body { background: #fff; color: #000; }
   .section-title, .hero__title, .stats__num { color: #000; }
 }
+
+/* ════════════════════════════════════════════════════════════
+   HINT DO CARDÁPIO DIGITAL (QR) — link sutil na home
+════════════════════════════════════════════════════════════ */
+.menu-qr-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: var(--s4);
+  padding: 10px var(--s4);
+  background: rgba(232,160,32,.07);
+  border: 1px solid rgba(232,160,32,.25);
+  border-radius: var(--r-full);
+  color: var(--c-text-2);
+  font-size: .9rem;
+  transition: border-color var(--t-fast), background var(--t-fast), transform var(--t-fast);
+}
+.menu-qr-hint strong { color: var(--c-amber); font-weight: 700; }
+.menu-qr-hint > i:first-child {
+  color: var(--c-amber);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.menu-qr-hint > i:last-child {
+  font-size: .8rem;
+  color: var(--c-amber);
+  transition: transform var(--t-fast);
+}
+.menu-qr-hint:hover {
+  border-color: var(--c-amber);
+  background: rgba(232,160,32,.12);
+  transform: translateY(-2px);
+}
+.menu-qr-hint:hover > i:last-child { transform: translateX(3px); }
+.menu-qr-hint:focus-visible { outline: 3px solid var(--c-amber); outline-offset: 3px; }
+
+@media (max-width: 480px) {
+  .menu-qr-hint { font-size: .82rem; padding: 10px var(--s3); }
+}
+
+/* Polimento sutil dos itens do cardápio da home (sem mudar identidade) */
+.menu-item {
+  position: relative;
+}
+.menu-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--c-amber);
+  transition: width var(--t-fast);
+}
+.menu-item:hover::before { width: 3px; }
+.menu-pizza-item:active { transform: scale(.98); }

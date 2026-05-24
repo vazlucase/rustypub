@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cardápio · Rusty Pub</title>
+
+  <!-- Página oculta: acessível apenas via QR Code na mesa. Não indexar. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0705">
+  <meta name="description" content="Cardápio digital do Rusty Pub — comidas, hambúrgueres, pizzas, drinks e cervejas.">
+
+  <!-- CSP: mesma política da home -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/css/lp.css">
+  <link rel="stylesheet" href="/css/cardapio.css">
+</head>
+<body class="menu-page">
+
+  <a href="#menu-conteudo" class="skip-link">Pular para o cardápio</a>
+
+  <!-- ─── TOPO FIXO ─── -->
+  <header class="mp-header" id="mp-header" role="banner">
+    <div class="mp-header__bar">
+      <a href="#topo" class="mp-header__brand" aria-label="Rusty Pub — início do cardápio">
+        <img src="/assets/rusty.webp" alt="" width="34" height="31" class="mp-header__logo" aria-hidden="true">
+        <span class="mp-header__name">RUSTY<em>PUB</em></span>
+      </a>
+      <span class="mp-header__tag">Cardápio digital</span>
+    </div>
+
+    <!-- Busca + filtro de categoria (sticky) -->
+    <div class="mp-controls">
+      <div class="mp-search">
+        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+        <input
+          type="search"
+          id="menu-search"
+          class="mp-search__input"
+          placeholder="Buscar prato, drink, cerveja…"
+          aria-label="Buscar no cardápio"
+          autocomplete="off"
+          enterkeyhint="search">
+        <button type="button" class="mp-search__clear" id="search-clear" aria-label="Limpar busca" hidden>
+          <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <nav class="mp-chips" id="menu-chips" aria-label="Filtrar por categoria">
+        <button class="mp-chip active" data-filter="todos" aria-pressed="true">Tudo</button>
+        <button class="mp-chip" data-filter="comidas" aria-pressed="false"><i class="fas fa-burger" aria-hidden="true"></i> Comidas</button>
+        <button class="mp-chip" data-filter="bebidas" aria-pressed="false"><i class="fas fa-martini-glass-citrus" aria-hidden="true"></i> Bebidas</button>
+      </nav>
+    </div>
+  </header>
+
+  <span id="topo" aria-hidden="true"></span>
+
+  <main id="menu-conteudo" class="mp-main">
+
+    <!-- HERO compacto -->
+    <section class="mp-hero" aria-labelledby="mp-hero-title">
+      <p class="mp-hero__eyebrow"><span></span> Belém-PA · Est. 2015 <span></span></p>
+      <h1 class="mp-hero__title" id="mp-hero-title">CARDÁPIO</h1>
+      <p class="mp-hero__sub">Do petisco ao último gole — tudo preparado com capricho. 🤘</p>
+    </section>
+
+    <div class="mp-wrap" id="menu-conteudo-lista">
+
+      <!-- ════════ COMIDAS ════════ -->
+      <div class="mp-group" data-group="comidas">
+
+        <section class="mp-cat" id="cat-entradas" data-cat="comidas">
+          <h2 class="mp-cat__title"><i class="fas fa-utensils" aria-hidden="true"></i> Entradas</h2>
+          <ul class="mp-list" role="list">
+            <li class="mp-item" data-name="ferrari batata frita maionese">
+              <div class="mp-item__head">
+                <strong>Ferrari</strong>
+                <span class="mp-item__price">R$ 25,99</span>
+              </div>
+              <p class="mp-item__desc">Batata frita + maionese artesanal</p>
+            </li>
+            <li class="mp-item" data-name="aston martin linguica jambu artesanal">
+              <div class="mp-item__head">
+                <strong>Aston Martin</strong>
+                <span class="mp-item__price">R$ 39,99</span>
+              </div>
+              <p class="mp-item__desc">Linguiça artesanal de jambu · torrada, farofa e molho</p>
+            </li>
+            <li class="mp-item" data-name="troller pastel porcao queijo presunto">
+              <div class="mp-item__head">
+                <strong>Troller</strong>
+                <span class="mp-item__price">R$ 39,99</span>
+              </div>
+              <p class="mp-item__desc">6 pastéis · queijo, queijo c/ presunto e doce de leite com queijo</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-burgers" data-cat="comidas">
+          <h2 class="mp-cat__title"><i class="fas fa-burger" aria-hidden="true"></i> Hambúrgueres</h2>
+          <p class="mp-cat__obs">Todos no pão brioche com blend de 160g</p>
+          <ul class="mp-list" role="list">
+            <li class="mp-item" data-name="mclaren ovo queijo prato creme alface tomate">
+              <div class="mp-item__head">
+                <strong>McLaren</strong>
+                <span class="mp-item__price">R$ 36,99</span>
+              </div>
+              <p class="mp-item__desc">Ovo frito, queijo prato, creme de queijo, alface e tomate</p>
+            </li>
+            <li class="mp-item" data-name="jaguar creme queijo bacon coalho geleia pimenta">
+              <div class="mp-item__head">
+                <strong>Jaguar</strong>
+                <span class="mp-item__price">R$ 37,99</span>
+              </div>
+              <p class="mp-item__desc">Creme de queijo, bacon, queijo coalho e geleia de pimenta</p>
+            </li>
+            <li class="mp-item" data-name="cadillac cebola caramelizada creme queijo prato alface tomate">
+              <div class="mp-item__head">
+                <strong>Cadillac</strong>
+                <span class="mp-item__price">R$ 37,99</span>
+              </div>
+              <p class="mp-item__desc">Cebola caramelizada, creme de queijo, queijo prato, alface e tomate</p>
+            </li>
+            <li class="mp-item" data-name="corvette creme queijo prato alface tomate bacon">
+              <div class="mp-item__head">
+                <strong>Corvette</strong>
+                <span class="mp-item__price">R$ 37,99</span>
+              </div>
+              <p class="mp-item__desc">Creme de queijo, queijo prato, alface, tomate e bacon</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-adicionais" data-cat="comidas">
+          <h2 class="mp-cat__title"><i class="fas fa-plus" aria-hidden="true"></i> Adicionais</h2>
+          <ul class="mp-list mp-list--compact" role="list">
+            <li class="mp-item mp-item--inline" data-name="blend extra"><strong>Blend extra</strong><span class="mp-item__price">R$ 11,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="ovo frito"><strong>Ovo frito</strong><span class="mp-item__price">R$ 2,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="bacon"><strong>Bacon</strong><span class="mp-item__price">R$ 4,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="molho da casa"><strong>Molho da casa</strong><span class="mp-item__price">R$ 1,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="cebola caramelizada"><strong>Cebola caramelizada</strong><span class="mp-item__price">R$ 4,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="geleia de pimenta"><strong>Geleia de pimenta</strong><span class="mp-item__price">R$ 1,99</span></li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-pizzas" data-cat="comidas">
+          <h2 class="mp-cat__title">
+            <i class="fas fa-pizza-slice" aria-hidden="true"></i> Pizzas
+            <span class="mp-cat__badge">R$ 65,00 · 35cm</span>
+          </h2>
+          <p class="mp-cat__obs">Muçarela, molho de tomate e ingredientes especiais de cada sabor</p>
+          <ul class="mp-tags" role="list">
+            <li class="mp-tag" data-name="marguerita">Marguerita</li>
+            <li class="mp-tag" data-name="quatro queijos">Quatro Queijos</li>
+            <li class="mp-tag" data-name="calabresa">Calabresa</li>
+            <li class="mp-tag" data-name="mista da casa">Mista da Casa</li>
+            <li class="mp-tag" data-name="mista">Mista</li>
+            <li class="mp-tag" data-name="gorgonzola com uva">Gorgonzola com Uva</li>
+            <li class="mp-tag" data-name="napolitana">Napolitana</li>
+            <li class="mp-tag" data-name="coalho bacon geleia">Coalho, Bacon &amp; Geleia</li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-sobremesa" data-cat="comidas">
+          <h2 class="mp-cat__title"><i class="fas fa-ice-cream" aria-hidden="true"></i> Sobremesa</h2>
+          <ul class="mp-list" role="list">
+            <li class="mp-item" data-name="alfajor paraense cupuacu castanha">
+              <div class="mp-item__head">
+                <strong>Alfajor Paraense</strong>
+                <span class="mp-item__price">R$ 24,99</span>
+              </div>
+              <p class="mp-item__desc">Creme de cupuaçu + alfajor recheado + farofa de castanhas</p>
+            </li>
+          </ul>
+        </section>
+      </div><!-- /comidas -->
+
+      <!-- ════════ BEBIDAS ════════ -->
+      <div class="mp-group" data-group="bebidas">
+
+        <section class="mp-cat" id="cat-caipis" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-wine-glass" aria-hidden="true"></i> Caipi's</h2>
+          <ul class="mp-list" role="list">
+            <li class="mp-item mp-item--inline" data-name="caipirinha"><strong>Caipirinha</strong><span class="mp-item__price">R$ 24,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="caipirinha de jambu"><strong>Caipirinha de Jambu</strong><span class="mp-item__price">R$ 25,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="caipiroska nacional"><strong>Caipiroska Nacional</strong><span class="mp-item__price">R$ 27,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="caipiroska importada"><strong>Caipiroska Importada</strong><span class="mp-item__price">R$ 31,99</span></li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-drinks" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-martini-glass-citrus" aria-hidden="true"></i> Drinks &amp; Gins</h2>
+          <ul class="mp-list" role="list">
+            <li class="mp-item mp-item--inline" data-name="margarita"><strong>Margarita</strong><span class="mp-item__price">R$ 24,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="negroni"><strong>Negroni</strong><span class="mp-item__price">R$ 29,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="campari tonic"><strong>Campari Tonic</strong><span class="mp-item__price">R$ 29,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="aperol spritz"><strong>Aperol Spritz</strong><span class="mp-item__price">R$ 34,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="gin tonica"><strong>Gin Tônica</strong><span class="mp-item__price">R$ 29,99</span></li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-monster" data-cat="bebidas">
+          <h2 class="mp-cat__title">
+            <i class="fas fa-bolt" aria-hidden="true"></i> Linha Monster
+            <span class="mp-cat__badge">R$ 39,99</span>
+          </h2>
+          <p class="mp-cat__obs">Gin/Vodka + energético + frutas + hortelã</p>
+          <ul class="mp-tags" role="list">
+            <li class="mp-tag" data-name="tropical monster">Tropical Monster</li>
+            <li class="mp-tag" data-name="violet monster">Violet Monster</li>
+            <li class="mp-tag" data-name="summer monster zero">Summer Monster (zero)</li>
+            <li class="mp-tag" data-name="monster paradise">Monster Paradise</li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-chopp" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-beer-mug-empty" aria-hidden="true"></i> Chopp 300ml</h2>
+          <ul class="mp-list" role="list">
+            <li class="mp-item mp-item--inline" data-name="cerpa tijuca chopp">
+              <strong>Cerpa Tijuca</strong>
+              <span class="mp-item__price"><s>R$ 11,99</s> R$ 7,99</span>
+            </li>
+            <li class="mp-item mp-item--inline" data-name="cerpa export chopp">
+              <strong>Cerpa Export</strong>
+              <span class="mp-item__price"><s>R$ 14,99</s> R$ 9,99</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-cervejas" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-beer-mug-empty" aria-hidden="true"></i> Cervejas 600ml</h2>
+          <ul class="mp-list mp-list--compact" role="list">
+            <li class="mp-item mp-item--inline" data-name="tijuca puro malte"><strong>Tijuca Puro Malte</strong><span class="mp-item__price">R$ 14,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="cerpa export 600"><strong>Cerpa Export</strong><span class="mp-item__price">R$ 17,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="heineken 600"><strong>Heineken</strong><span class="mp-item__price">R$ 18,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="kroland 600"><strong>Kroland</strong><span class="mp-item__price">R$ 15,99</span></li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-longneck" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-wine-bottle" aria-hidden="true"></i> Long Neck</h2>
+          <ul class="mp-list mp-list--compact" role="list">
+            <li class="mp-item mp-item--inline" data-name="kroland long neck"><strong>Kroland</strong><span class="mp-item__price">R$ 9,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="tijuca pilsen"><strong>Tijuca Pilsen</strong><span class="mp-item__price">R$ 8,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="tijuca silver"><strong>Tijuca Silver</strong><span class="mp-item__price">R$ 11,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="heineken long neck"><strong>Heineken</strong><span class="mp-item__price">R$ 12,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="ice limao"><strong>Ice Limão</strong><span class="mp-item__price">R$ 11,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="grape cool"><strong>Grape Cool</strong><span class="mp-item__price">R$ 14,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="baden 500ml"><strong>Baden (500ml)</strong><span class="mp-item__price">R$ 25,00</span></li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-doses" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-whiskey-glass" aria-hidden="true"></i> Doses</h2>
+          <ul class="mp-list mp-list--compact" role="list">
+            <li class="mp-item mp-item--inline" data-name="whisky dose"><strong>Whisky</strong><span class="mp-item__price">R$ 24,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="tequila dose"><strong>Tequila</strong><span class="mp-item__price">R$ 14,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="cachaca dose"><strong>Cachaça</strong><span class="mp-item__price">R$ 7,99</span></li>
+          </ul>
+        </section>
+
+        <section class="mp-cat" id="cat-sem-alcool" data-cat="bebidas">
+          <h2 class="mp-cat__title"><i class="fas fa-bottle-water" aria-hidden="true"></i> Sem Álcool</h2>
+          <ul class="mp-list mp-list--compact" role="list">
+            <li class="mp-item mp-item--inline" data-name="agua com gas sem gas"><strong>Água (com/sem gás)</strong><span class="mp-item__price">R$ 4,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="refrigerante"><strong>Refrigerante</strong><span class="mp-item__price">R$ 6,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="suco del valle"><strong>Suco Del Valle</strong><span class="mp-item__price">R$ 7,99</span></li>
+            <li class="mp-item mp-item--inline" data-name="energetico monster"><strong>Energético Monster</strong><span class="mp-item__price">R$ 12,99</span></li>
+          </ul>
+        </section>
+      </div><!-- /bebidas -->
+
+      <!-- Estado vazio da busca -->
+      <div class="mp-empty" id="menu-empty" hidden>
+        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+        <p>Nada encontrado para <strong id="menu-empty-term"></strong></p>
+        <button type="button" class="btn btn--outline" id="menu-empty-reset">Limpar busca</button>
+      </div>
+
+      <!-- Observações -->
+      <aside class="mp-obs" aria-label="Observações do cardápio">
+        <i class="fas fa-circle-info" aria-hidden="true"></i>
+        <div>
+          <strong>Importante</strong>
+          <p>Couvert artístico: R$ 10,00 por pessoa · Consumo de alimentos externos: + R$ 10,00. Valores sujeitos a alteração.</p>
+        </div>
+      </aside>
+
+      <p class="mp-footer-note">© 2026 Rusty Pub · Vem pro Rusty! 🍺</p>
+    </div><!-- /mp-wrap -->
+  </main>
+
+  <!-- ─── CTA flutuante: pedir / chamar garçom ─── -->
+  <a
+    href="https://wa.me/5591991567596?text=Ol%C3%A1!%20Estou%20no%20Rusty%20Pub%20e%20gostaria%20de%20fazer%20um%20pedido."
+    class="mp-fab"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Fazer pedido pelo WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span>Fazer pedido</span>
+  </a>
+
+  <!-- Botão voltar ao topo -->
+  <button type="button" class="mp-top" id="mp-top" aria-label="Voltar ao topo" hidden>
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <script src="/js/cardapio.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>

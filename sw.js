@@ -2,7 +2,7 @@
  * sw.js — Service Worker Rusty Pub
  * v4 — ELITE: referências corretas de assets, estratégias otimizadas, CSP-friendly
  */
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_STATIC  = `rusty-pub-static-${CACHE_VERSION}`;
 const CACHE_FONTS   = `rusty-pub-fonts-${CACHE_VERSION}`;
 const CACHE_IMAGES  = `rusty-pub-images-${CACHE_VERSION}`;
@@ -10,13 +10,16 @@ const CACHE_IMAGES  = `rusty-pub-images-${CACHE_VERSION}`;
 // CORRIGIDO: era 'style.css' (inexistente), agora 'lp.css' (correto)
 const STATIC_ASSETS = [
   '/css/lp.css',
+  '/css/cardapio.css',
   '/js/main.js',
+  '/js/cardapio.js',
   '/js/utils/helpers.js',
   '/js/utils/reveal.js',
   '/js/modules/agenda.js',
   '/js/modules/galeria.js',
   '/js/modules/eventosPassados.js',
   '/js/modules/lightbox.js',
+  '/cardapio.html',
   '/manifest.json',
 ];
 
