@@ -1,14 +1,16 @@
 /**
  * sw.js — Service Worker Rusty Pub
- * v4 — ELITE: referências corretas de assets, estratégias otimizadas, CSP-friendly
+ * v6 — ELITE: ícones/favicon/OG cacheados, sem dependência de terceiros (Unsplash removido)
  */
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const CACHE_STATIC  = `rusty-pub-static-${CACHE_VERSION}`;
 const CACHE_FONTS   = `rusty-pub-fonts-${CACHE_VERSION}`;
 const CACHE_IMAGES  = `rusty-pub-images-${CACHE_VERSION}`;
 
-// CORRIGIDO: era 'style.css' (inexistente), agora 'lp.css' (correto)
 const STATIC_ASSETS = [
+  '/',
+  '/index.html',
+  '/cardapio.html',
   '/css/lp.css',
   '/css/cardapio.css',
   '/js/main.js',
@@ -19,8 +21,11 @@ const STATIC_ASSETS = [
   '/js/modules/galeria.js',
   '/js/modules/eventosPassados.js',
   '/js/modules/lightbox.js',
-  '/cardapio.html',
   '/manifest.json',
+  '/favicon.ico',
+  '/apple-touch-icon.png',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
 ];
 
 self.addEventListener('install', event => {
@@ -72,14 +77,8 @@ self.addEventListener('fetch', event => {
   }
 
   // Imagens locais — stale-while-revalidate
-  if (url.pathname.startsWith('/assets/')) {
+  if (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/icons/')) {
     event.respondWith(staleWhileRevalidate(request, CACHE_IMAGES));
-    return;
-  }
-
-  // Imagens externas (Unsplash) — cache first com expiração implícita por versão
-  if (url.hostname.includes('unsplash.com') || url.hostname.includes('images.unsplash')) {
-    event.respondWith(cacheFirst(request, CACHE_IMAGES));
     return;
   }
 });
