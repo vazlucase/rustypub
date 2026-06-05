@@ -1,15 +1,13 @@
 {
-  "name": "Rusty Pub — Chopp, Brejas e Rock'n'roll",
-  "short_name": "Rusty Pub",
-  "description": "O bar de rock de Belém-PA. Chopps artesanais, shows ao vivo e cardápio completo.",
+  "name": "Rusty Pub",
+  "short_name": "RustyPub",
+  "description": "Templo do rock com cerveja artesanal",
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "theme_color": "#0a0705",
-  "background_color": "#0a0705",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
   "lang": "pt-BR",
-  "dir": "ltr",
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -30,5 +28,13 @@
       "purpose": "maskable"
     }
   ],
-  "categories": ["food", "lifestyle", "entertainment"]
+  "categories": ["food", "lifestyle", "entertainment"],
+  "screenshots": [
+    {
+      "src": "https://images.unsplash.com/photo-1572116466296-b4f0f41c2e4b?w=1280&h=720&fit=crop",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "label": "Rusty Pub — Página Inicial"
+    }
+  ]
 }
