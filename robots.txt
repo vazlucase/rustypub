@@ -1,0 +1,8 @@
+# Rusty Pub — robots.txt
+User-agent: *
+Allow: /
+
+# Cardápio digital: acesso somente via QR Code na mesa (não indexar)
+Disallow: /cardapio.html
+
+Sitemap: https://rustypub.vercel.app/sitemap.xml
