@@ -1,0 +1,12 @@
+{
+  "name": "rustypub",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site institucional do Rusty Pub — bar de rock em Belém-PA. HTML/CSS/JS estático + PWA.",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "license": "MIT",
+  "author": "Lucas Vaz"
+}
