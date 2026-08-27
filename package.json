@@ -6,11 +6,17 @@
   "description": "Site institucional do Rusty Pub — bar de rock em Belém-PA. HTML/CSS/JS estático + PWA.",
   "scripts": {
     "dev": "npx serve .",
-    "start": "npx serve ."
+    "start": "npx serve .",
+    "test": "node --test",
+    "test:e2e": "node --test tests/quiz-e2e.test.js",
+    "check": "node --check js/quiz.js && node --check js/quiz-admin.js && node --check api/quiz/start.js && node --check api/quiz/state.js && node --check api/quiz/answer.js && node --check api/quiz/ticket.js && node --check api/quiz/redeem.js"
   },
   "dependencies": {
     "@upstash/redis": "^1.38.1"
   },
   "license": "MIT",
-  "author": "Lucas Vaz"
+  "author": "Lucas Vaz",
+  "devDependencies": {
+    "playwright-core": "^1.62.1"
+  }
 }

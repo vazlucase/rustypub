@@ -17,9 +17,9 @@
       ]
     },
     {
-      "source": "/cardapio.html",
+      "source": "/(cardapio|quiz|quiz-admin)\\.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
     },
     {
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "source": "/(index\\.html|cardapio\\.html)?",
+      "source": "/(index\\.html|cardapio\\.html|quiz\\.html|quiz-admin\\.html)?",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]

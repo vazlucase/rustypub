@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Quiz Rustytoberfest | Rusty Pub</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0a0705">
+  <meta name="description" content="Quiz premiado Rustytoberfest do Rusty Pub.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/lp.css?v=2">
+  <link rel="stylesheet" href="/css/quiz.css?v=1">
+</head>
+<body class="quiz-page">
+  <a class="skip-link" href="#quiz-main">Pular para o quiz</a>
+
+  <header class="quiz-header" role="banner">
+    <div class="quiz-header__inner">
+      <div class="quiz-brand" aria-label="Rusty Pub">
+        <img src="/assets/rusty-sm.webp" width="40" height="37" alt="" aria-hidden="true">
+        <span>RUSTY<em>PUB</em></span>
+      </div>
+      <span class="quiz-header__campaign">RUSTYTOBERFEST</span>
+    </div>
+  </header>
+
+  <main class="quiz-main" id="quiz-main">
+    <div class="quiz-shell">
+      <div class="quiz-live" id="quiz-live" role="status" aria-live="polite" aria-atomic="true"></div>
+
+      <section class="quiz-view quiz-view--loading" id="view-loading" aria-label="Carregando quiz">
+        <div class="quiz-skeleton quiz-skeleton--short"></div>
+        <div class="quiz-skeleton quiz-skeleton--title"></div>
+        <div class="quiz-skeleton quiz-skeleton--text"></div>
+        <div class="quiz-skeleton quiz-skeleton--button"></div>
+      </section>
+
+      <section class="quiz-view quiz-intro" id="view-intro" hidden aria-labelledby="intro-title">
+        <div class="quiz-intro__copy">
+          <p class="quiz-kicker">15 perguntas. 10 vencedores.</p>
+          <h1 id="intro-title">VOCÊ MANJA DE CHOPP?</h1>
+          <p class="quiz-intro__lead">Acerte tudo e dispute 2 chopps por conta da casa.</p>
+        </div>
+
+        <div class="quiz-prize" aria-label="Prêmio do quiz">
+          <span class="quiz-prize__number">2</span>
+          <div>
+            <strong>CHOPPS</strong>
+            <span>por conta da casa</span>
+          </div>
+        </div>
+
+        <div class="quiz-rules" aria-label="Regras principais">
+          <div><strong>30s</strong><span>por pergunta</span></div>
+          <div><strong>15/15</strong><span>para concorrer</span></div>
+          <div><strong>1x</strong><span>por pessoa</span></div>
+        </div>
+
+        <form class="quiz-form" id="quiz-start-form" novalidate>
+          <div class="quiz-field">
+            <label for="quiz-name">Seu nome</label>
+            <input id="quiz-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required placeholder="Como devemos chamar você?">
+            <p class="quiz-field__error" id="name-error"></p>
+          </div>
+          <div class="quiz-field">
+            <label for="quiz-phone">WhatsApp</label>
+            <input id="quiz-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" required placeholder="(91) 99999-9999">
+            <p class="quiz-field__hint">Usado somente para limitar a uma tentativa.</p>
+            <p class="quiz-field__error" id="phone-error"></p>
+          </div>
+
+          <label class="quiz-check">
+            <input type="checkbox" id="quiz-terms" required>
+            <span>Li e aceito as regras. O prêmio é individual, de uso único e válido até o resgate.</span>
+          </label>
+          <label class="quiz-check">
+            <input type="checkbox" id="quiz-adult" required>
+            <span>Confirmo que tenho 18 anos ou mais.</span>
+          </label>
+
+          <p class="quiz-form__error" id="start-error" role="alert"></p>
+          <button class="quiz-button quiz-button--primary" type="submit" id="start-button">COMEÇAR O DESAFIO</button>
+          <p class="quiz-responsible">Beba com moderação. Se beber, não dirija.</p>
+        </form>
+      </section>
+
+      <section class="quiz-view quiz-question" id="view-question" hidden aria-labelledby="question-title">
+        <div class="quiz-question__top">
+          <p class="quiz-progress-label" id="question-progress">Pergunta 1 de 15</p>
+          <div class="quiz-timer" id="quiz-timer" role="timer" aria-live="off" aria-label="30 segundos restantes">
+            <span id="timer-value">30</span><small>s</small>
+          </div>
+        </div>
+        <div class="quiz-timer-track" aria-hidden="true"><span id="timer-bar"></span></div>
+
+        <form id="answer-form">
+          <fieldset class="quiz-fieldset">
+            <legend id="question-title">Pergunta</legend>
+            <div class="quiz-options" id="question-options"></div>
+          </fieldset>
+          <p class="quiz-form__error" id="answer-error" role="alert"></p>
+          <button class="quiz-button quiz-button--primary" id="answer-button" type="submit" disabled>CONFIRMAR RESPOSTA</button>
+        </form>
+        <p class="quiz-question__note">A resposta certa será revelada somente no resultado final.</p>
+      </section>
+
+      <section class="quiz-view quiz-result" id="view-result" hidden aria-labelledby="result-title">
+        <p class="quiz-kicker" id="result-kicker">Resultado final</p>
+        <h1 id="result-title">QUIZ CONCLUÍDO</h1>
+        <div class="quiz-score" aria-label="Pontuação final">
+          <strong id="result-score">0</strong><span>/15</span>
+        </div>
+        <p class="quiz-result__message" id="result-message"></p>
+        <div class="quiz-answer-map" id="answer-map" aria-label="Resumo das respostas"></div>
+        <p class="quiz-result__fine" id="result-fine"></p>
+      </section>
+
+      <section class="quiz-view quiz-winner" id="view-winner" hidden aria-labelledby="winner-title">
+        <p class="quiz-kicker">Você entrou para os 10</p>
+        <h1 id="winner-title">TICKET LIBERADO</h1>
+        <p class="quiz-winner__lead">Apresente este ticket à equipe do Rusty Pub.</p>
+
+        <article class="quiz-ticket" id="quiz-ticket">
+          <div class="quiz-ticket__brand">RUSTYTOBERFEST</div>
+          <div class="quiz-ticket__prize"><strong>2 CHOPPS</strong><span>POR CONTA DA CASA</span></div>
+          <div class="quiz-ticket__score">15/15</div>
+          <dl class="quiz-ticket__details">
+            <div><dt>Vencedor</dt><dd id="ticket-name"></dd></div>
+            <div><dt>Posição</dt><dd id="ticket-rank"></dd></div>
+          </dl>
+          <div class="quiz-ticket__code"><span>Código único</span><strong id="ticket-code"></strong></div>
+          <p id="ticket-status">Válido até o resgate</p>
+        </article>
+
+        <a class="quiz-button quiz-button--whatsapp" id="ticket-whatsapp" href="#" target="_blank" rel="noopener noreferrer">ENVIAR PELO WHATSAPP</a>
+        <p class="quiz-winner__note">O ticket é de uso único. Guarde esta tela ou faça uma captura.</p>
+      </section>
+
+      <section class="quiz-view quiz-blocked" id="view-blocked" hidden aria-labelledby="blocked-title">
+        <p class="quiz-kicker">Quiz aberto em outra aba</p>
+        <h1 id="blocked-title">CONTINUE EM UMA TELA</h1>
+        <p>Feche a outra aba e toque abaixo para sincronizar seu progresso.</p>
+        <button class="quiz-button quiz-button--secondary" type="button" id="sync-button">SINCRONIZAR AGORA</button>
+      </section>
+
+      <section class="quiz-view quiz-fatal" id="view-fatal" hidden aria-labelledby="fatal-title">
+        <p class="quiz-kicker">Não foi possível conectar</p>
+        <h1 id="fatal-title">TENTE NOVAMENTE</h1>
+        <p id="fatal-message">Sua tentativa continua protegida no servidor.</p>
+        <button class="quiz-button quiz-button--secondary" type="button" id="retry-button">RECONECTAR</button>
+      </section>
+    </div>
+  </main>
+
+  <footer class="quiz-footer">
+    <p>Promoção exclusiva Rusty Pub. Consumo responsável para maiores de 18 anos.</p>
+  </footer>
+
+  <script type="module" src="/js/quiz.js?v=1"></script>
+</body>
+</html>

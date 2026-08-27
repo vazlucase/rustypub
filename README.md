@@ -1,101 +1,145 @@
-# 🍺 Rusty Pub
+# Rusty Pub
 
-Site institucional do **Rusty Pub** — bar de rock em Belém-PA. Chopps artesanais, shows ao vivo e cardápio digital.
+Site institucional do **Rusty Pub**, bar de rock em Belém-PA, com cardápio digital e quiz promocional Rustytoberfest.
 
-🔗 **Produção:** [rustypub.vercel.app](https://rustypub.vercel.app)
-
----
+**Produção:** [rustypub.vercel.app](https://rustypub.vercel.app)
 
 ## Stack
 
-Site **100% estático** (sem backend), otimizado para performance e SEO, com PWA.
+- HTML5, CSS3 e JavaScript vanilla, sem etapa de build
+- Vercel Functions em JavaScript
+- Upstash Redis por `@upstash/redis`
+- Manifest PWA e Service Worker pass-through, sem cache de respostas da API
+- Deploy na Vercel
 
-- HTML5 semântico + CSS3 (tokens de design, dark theme)
-- JavaScript vanilla modular (sem framework)
-- PWA: manifest + Service Worker (offline-ready)
-- Deploy: Vercel (CDN global)
+## Estrutura principal
 
----
-
-## Estrutura
-
-```
+```text
 rustypub/
-├── index.html              # Home (institucional)
-├── cardapio.html           # Cardápio digital — página oculta, acesso via QR Code
-├── manifest.json           # PWA
-├── sw.js                   # Service Worker (cache offline)
-├── vercel.json             # Headers de segurança + cache
-├── robots.txt              # SEO (bloqueia /cardapio.html)
-├── sitemap.xml             # SEO
-├── favicon.ico             # Favicon + apple-touch-icon
-├── og-image.png            # Imagem de compartilhamento (1200×630)
-├── icons/                  # Ícones PWA (192, 512, maskable)
-├── assets/                 # Imagens (.webp)
-├── css/
-│   ├── lp.css              # Estilos da home
-│   └── cardapio.css        # Estilos do cardápio
-└── js/
-    ├── main.js             # Orquestração da home
-    ├── cardapio.js         # Busca + filtro do cardápio
-    ├── modules/            # agenda, galeria, lightbox, eventosPassados
-    └── utils/              # helpers, reveal
+├── index.html                 # Home pública
+├── cardapio.html              # Cardápio oculto, distribuído por QR Code
+├── quiz.html                  # Quiz oculto, distribuído pelo Instagram
+├── quiz-admin.html            # Validação interna dos tickets
+├── api/
+│   ├── visitas.js
+│   └── quiz/                  # Start, state, answer, ticket e redeem
+├── lib/quiz/                  # Perguntas, segurança, Redis e scripts Lua
+├── css/                       # Estilos da home, cardápio e quiz
+├── js/                        # Clientes da home, cardápio e quiz
+├── manifest.json
+├── sw.js                      # Remove caches antigos e opera em pass-through
+├── vercel.json                # Headers de segurança, cache e noindex
+├── robots.txt
+└── .env.example
 ```
 
----
+## Quiz Rustytoberfest
 
-## Cardápio digital (aba oculta via QR Code)
+O `quiz.html` não possui link na home, no cardápio ou no rodapé. Ele é marcado como `noindex, nofollow, noarchive`, bloqueado no `robots.txt` e não aparece no sitemap. A URL continua compartilhável e deve ser divulgada somente pelo canal da campanha.
 
-O `cardapio.html` é uma página **sem link no menu** e marcada como `noindex` (reforçado no `robots.txt` e no header `X-Robots-Tag` via `vercel.json`). O único acesso é por **QR Code** nas mesas do bar.
+Regras implementadas:
 
-Recursos: busca instantânea (sem acento), filtro por categoria (Comidas/Bebidas), botão flutuante de pedido via WhatsApp, estado vazio, offline-ready e acessível (WCAG AA).
+- 15 perguntas e 30 segundos por pergunta
+- Feedback somente ao final
+- Uma tentativa por WhatsApp e identificador aleatório do dispositivo
+- Alternativas embaralhadas por tentativa
+- Gabarito e cronômetro sob autoridade do servidor
+- 2 chopps para os 10 primeiros participantes com 15/15
+- Reserva atômica do décimo ticket por script Lua
+- Ticket de uso único, válido até o resgate
+- Retomada após reload, suspensão da aba ou falha de rede
+- Coordenação entre múltiplas abas
 
-> Para gerar/atualizar o QR Code, veja [`CARDAPIO-QR-README.md`](./CARDAPIO-QR-README.md).
+O WhatsApp é normalizado e transformado em HMAC antes de ser persistido. O número, IP e identificador do dispositivo não são retornados pelas APIs públicas.
 
----
+## Resgate interno
+
+A página `quiz-admin.html` também é oculta e marcada como `noindex`. A equipe informa o código do ticket e o PIN configurado no ambiente.
+
+O fluxo primeiro verifica o ticket e depois solicita confirmação para marcá-lo como usado. O resgate é atômico: duas confirmações concorrentes não conseguem consumir o mesmo ticket duas vezes. O PIN não fica no HTML, no JavaScript nem no armazenamento do navegador.
+
+Não adicione links públicos para `quiz-admin.html` e nunca registre o PIN no repositório.
+
+## Variáveis de ambiente
+
+Copie `.env.example` para o ambiente local da Vercel ou cadastre os valores no painel do projeto:
+
+```text
+UPSTASH_REDIS_REST_URL
+UPSTASH_REDIS_REST_TOKEN
+QUIZ_ENABLED
+QUIZ_CAMPAIGN_ID
+QUIZ_WINNER_LIMIT
+QUIZ_QUESTION_SECONDS
+QUIZ_RETENTION_SECONDS
+QUIZ_IDENTITY_SECRET
+QUIZ_OPTION_SECRET
+QUIZ_TICKET_SECRET
+QUIZ_ADMIN_PIN
+```
+
+Use segredos independentes e aleatórios, com pelo menos 32 caracteres. O PIN interno exige pelo menos 6 caracteres. `QUIZ_ENABLED=false` bloqueia novas tentativas sem invalidar tickets já emitidos.
+
+`QUIZ_RETENTION_SECONDS` controla tentativas, sessões e a auditoria após o resgate. Tickets emitidos não recebem TTL e continuam válidos até serem usados.
 
 ## Como rodar localmente
 
-O site usa caminhos absolutos (`/css/…`) e Service Worker, então precisa ser servido por HTTP (não abra o arquivo direto):
+Instale as dependências:
 
 ```bash
-# opção 1 — npm
-npm run dev
-
-# opção 2 — Python
-python3 -m http.server 8000
+npm install
 ```
 
-Abra `http://localhost:8000`.
+Para visualizar somente as páginas estáticas:
 
----
+```bash
+npm run dev
+```
 
-## Deploy (Vercel)
+Para executar o quiz com as Vercel Functions e variáveis locais:
 
-O deploy é automático a cada push na branch `main`. O `vercel.json` aplica:
+```bash
+npx vercel dev
+```
 
-- **Headers de segurança:** CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
-- **Cache:** assets imutáveis (CSS/JS/imagens) com `max-age` de 1 ano; HTML e `sw.js` sempre revalidados
-- **`X-Robots-Tag: noindex`** na rota `/cardapio.html`
+Abra a URL informada pelo comando. Não abra os arquivos HTML diretamente, pois o projeto usa caminhos absolutos e APIs same-origin.
 
----
+Para executar a suíte completa (lógica, contratos e E2E headless no Microsoft Edge):
 
-## Segurança
+```bash
+npm test
+npm run check
+```
 
-- Sem segredos no código (site estático, sem variáveis sensíveis)
-- CSP restritiva (sem `unsafe-eval`, sem fontes de terceiros não confiáveis)
-- HTTPS forçado (HSTS com preload)
-- Proteção contra clickjacking (frame-ancestors none)
+O E2E usa `playwright-core` com o Edge instalado no Windows. Em outro local, defina `EDGE_PATH` com o caminho do executável antes de rodar `npm run test:e2e`.
 
-> O site não possui backend/API, portanto **não há endpoints que exijam rate limiting**. O Vercel já fornece proteção DDoS na borda. Caso um formulário ou API seja adicionado no futuro, implementar rate limiting nesse ponto.
+Os testes E2E interceptam as APIs para validar todos os estados visuais sem usar dados reais. A atomicidade dos scripts Lua tem cobertura de contrato; antes da campanha, ainda é obrigatório validar o 10º/11º vencedor e dois resgates simultâneos em um Redis Upstash de teste.
 
----
+## Deploy
 
-## Manutenção do cardápio
+O `vercel.json` aplica:
 
-Para alterar itens/preços, edite as listas `.mp-item` em `cardapio.html`. Cada item tem um atributo `data-name` com palavras-chave para a busca — mantenha-o atualizado ao renomear pratos.
+- CSP, HSTS, proteção contra clickjacking e demais headers de segurança
+- Assets versionados com cache imutável
+- HTML e `sw.js` sempre revalidados
+- `X-Robots-Tag` nas páginas ocultas
+- `Cache-Control: no-store` diretamente nas APIs do quiz
 
----
+Antes de ativar a campanha, confirme as variáveis do ambiente de produção e faça o fluxo completo no domínio final.
+
+## Cardápio digital
+
+O `cardapio.html` é uma página sem link na navegação e distribuída por QR Code nas mesas. Para alterar itens e preços, edite as listas `.mp-item` e mantenha os atributos `data-name` atualizados.
+
+Consulte [`CARDAPIO-QR-README.md`](./CARDAPIO-QR-README.md) para atualizar o QR Code.
+
+## Segurança operacional
+
+- Não exponha segredos ou o PIN em arquivos públicos
+- Não use o frontend como autoridade para pontuação ou ticket
+- Altere `QUIZ_CAMPAIGN_ID` ao iniciar uma campanha independente
+- Use `QUIZ_ENABLED=false` como kill switch de novas tentativas
+- Preserve o namespace da campanha enquanto houver tickets pendentes
 
 ## Licença
 

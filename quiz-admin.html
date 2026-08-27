@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Resgate Rustytoberfest | Rusty Pub</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0a0705">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/lp.css?v=2">
+  <link rel="stylesheet" href="/css/quiz-admin.css?v=1">
+</head>
+<body class="qa-page">
+  <a class="skip-link" href="#admin-main">Pular para o validador</a>
+  <header class="qa-header">
+    <div class="qa-header__inner">
+      <div class="qa-brand">
+        <img src="/assets/rusty-sm.webp" width="40" height="37" alt="" aria-hidden="true">
+        <span>RUSTY<em>PUB</em></span>
+      </div>
+      <span class="qa-header__label">USO DA EQUIPE</span>
+    </div>
+  </header>
+
+  <main class="qa-main" id="admin-main">
+    <section class="qa-panel" aria-labelledby="qa-title">
+      <p class="qa-kicker">Validação interna</p>
+      <h1 id="qa-title">RESGATAR TICKET</h1>
+      <p class="qa-lead">Confira o código antes de entregar os 2 chopps. O resgate só pode ser feito uma vez.</p>
+
+      <form class="qa-form" id="redeem-form" novalidate>
+        <div class="qa-field">
+          <label for="ticket-code-input">Código do ticket</label>
+          <input id="ticket-code-input" name="code" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="RUSTY-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX" required>
+          <p class="qa-hint">Digite ou cole o código exibido no celular do cliente.</p>
+        </div>
+        <div class="qa-field">
+          <label for="ticket-pin-input">PIN da equipe</label>
+          <input id="ticket-pin-input" name="pin" type="password" inputmode="numeric" autocomplete="off" minlength="6" maxlength="64" placeholder="Digite o PIN" required>
+        </div>
+        <p class="qa-error" id="redeem-error" role="alert"></p>
+        <button class="qa-button qa-button--primary" id="verify-button" type="submit">VERIFICAR TICKET</button>
+      </form>
+
+      <div class="qa-result" id="redeem-result" hidden aria-live="polite">
+        <div class="qa-status" id="ticket-status-badge" tabindex="-1"></div>
+        <div class="qa-prize"><strong>2 CHOPPS</strong><span>por conta da casa</span></div>
+        <dl class="qa-details">
+          <div><dt>Posição</dt><dd id="result-rank"></dd></div>
+          <div><dt>Emitido</dt><dd id="result-issued"></dd></div>
+          <div><dt>Resgatado</dt><dd id="result-redeemed"></dd></div>
+        </dl>
+        <button class="qa-button qa-button--danger" id="redeem-button" type="button">MARCAR COMO USADO</button>
+        <button class="qa-button qa-button--secondary" id="new-ticket-button" type="button">VERIFICAR OUTRO</button>
+      </div>
+
+      <div class="qa-confirm" id="confirm-panel" hidden role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+        <div class="qa-confirm__box">
+          <h2 id="confirm-title">Confirmar resgate?</h2>
+          <p>Faça isso somente depois de conferir o ticket e entregar o prêmio.</p>
+          <div class="qa-confirm__actions">
+            <button class="qa-button qa-button--secondary" id="cancel-redeem-button" type="button">CANCELAR</button>
+            <button class="qa-button qa-button--danger" id="confirm-redeem-button" type="button">CONFIRMAR USO</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/js/quiz-admin.js?v=1"></script>
+</body>
+</html>
