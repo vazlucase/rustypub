@@ -65,6 +65,8 @@ test('assets estáticos alterados usam versão de URL', async () => {
     assert.match(page, /\/css\/lp\.css\?v=2/);
   });
   assert.match(home, /\/js\/main\.js\?v=2/);
+  assert.match(quiz, /\/css\/quiz\.css\?v=2/);
+  assert.match(quiz, /\/js\/quiz\.js\?v=2/);
   assert.match(main, /\.\/modules\/galeria\.js\?v=2/);
   assert.match(main, /\.\/utils\/reveal\.js\?v=2/);
 });

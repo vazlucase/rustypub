@@ -185,6 +185,58 @@ test('quiz abre em 320 px, valida formulário e avança sem revelar acerto', asy
   await context.close();
 });
 
+test('pergunta mobile compacta mantém status e confirmação acessíveis durante o scroll', async () => {
+  const context = await browser.newContext({ viewport: { width: 320, height: 568 } });
+  const page = await context.newPage();
+  await page.route('**/api/quiz/state', route => jsonRoute(route, 200, questionState()));
+
+  await page.goto(`${server.origin}/quiz.html`);
+  await page.locator('#view-question').waitFor({ state: 'visible' });
+
+  assert.equal(await page.locator('body').evaluate(element => element.scrollWidth <= element.clientWidth), true);
+  assert.equal(await page.locator('#view-question').evaluate(element => getComputedStyle(element).overflowY), 'visible');
+  assert.equal(await page.locator('.quiz-question__status').evaluate(element => getComputedStyle(element).position), 'sticky');
+  assert.equal(await page.locator('.quiz-answer-actions').evaluate(element => getComputedStyle(element).position), 'sticky');
+  assert.ok(await page.locator('.quiz-option').first().evaluate(element => element.getBoundingClientRect().height >= 44));
+  assert.ok(await page.locator('#answer-button').evaluate(element => element.getBoundingClientRect().height >= 44));
+
+  await page.locator('.quiz-option').last().scrollIntoViewIfNeeded();
+  await page.locator('.quiz-option').last().click();
+  assert.equal(await page.locator('#answer-button').isDisabled(), false);
+  assert.equal(await page.locator('#quiz-timer').isVisible(), true);
+  await page.locator('#answer-button').scrollIntoViewIfNeeded();
+  assert.ok(await page.locator('#answer-button').evaluate(element => {
+    const rect = element.getBoundingClientRect();
+    return rect.bottom <= window.innerHeight && rect.top >= 0;
+  }));
+  assert.equal(await page.locator('.quiz-question__note').textContent(), 'A resposta certa será revelada somente no resultado final.');
+
+  await context.close();
+});
+
+test('intro mobile preserva toque, leitura e formulário sem overflow', async () => {
+  const context = await browser.newContext({ viewport: { width: 320, height: 568 } });
+  const page = await context.newPage();
+  await page.route('**/api/quiz/state', route => jsonRoute(route, 401, { error: 'Tentativa não encontrada.' }));
+
+  await page.goto(`${server.origin}/quiz.html`);
+  await page.locator('#view-intro').waitFor({ state: 'visible' });
+
+  assert.equal(await page.locator('body').evaluate(element => element.scrollWidth <= element.clientWidth), true);
+  assert.ok(await page.locator('#quiz-name').evaluate(element => element.getBoundingClientRect().height >= 44));
+  assert.ok(await page.locator('#quiz-phone').evaluate(element => element.getBoundingClientRect().height >= 44));
+  assert.ok(await page.locator('.quiz-check').first().evaluate(element => element.getBoundingClientRect().height >= 44));
+  assert.ok(await page.locator('#start-button').evaluate(element => element.getBoundingClientRect().height >= 44));
+  assert.equal(await page.locator('.quiz-header__campaign').isVisible(), true);
+  assert.equal(await page.locator('.quiz-prize').evaluate(element => getComputedStyle(element).transform), 'none');
+
+  await page.locator('#quiz-phone').focus();
+  assert.equal(await page.locator('#quiz-phone').getAttribute('inputmode'), 'tel');
+  assert.equal(await page.locator('#quiz-phone').evaluate(element => document.activeElement === element), true);
+
+  await context.close();
+});
+
 test('timer expirado envia timeout com chave idempotente', async () => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const page = await context.newPage();

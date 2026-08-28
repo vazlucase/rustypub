@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/css/lp.css?v=2">
-  <link rel="stylesheet" href="/css/quiz.css?v=1">
+  <link rel="stylesheet" href="/css/quiz.css?v=2">
 </head>
 <body class="quiz-page">
   <a class="skip-link" href="#quiz-main">Pular para o quiz</a>
@@ -90,23 +90,27 @@
       </section>
 
       <section class="quiz-view quiz-question" id="view-question" hidden aria-labelledby="question-title">
-        <div class="quiz-question__top">
-          <p class="quiz-progress-label" id="question-progress">Pergunta 1 de 15</p>
-          <div class="quiz-timer" id="quiz-timer" role="timer" aria-live="off" aria-label="30 segundos restantes">
-            <span id="timer-value">30</span><small>s</small>
+        <div class="quiz-question__status">
+          <div class="quiz-question__top">
+            <p class="quiz-progress-label" id="question-progress">Pergunta 1 de 15</p>
+            <div class="quiz-timer" id="quiz-timer" role="timer" aria-live="off" aria-label="30 segundos restantes">
+              <span id="timer-value">30</span><small>s</small>
+            </div>
           </div>
+          <div class="quiz-timer-track" aria-hidden="true"><span id="timer-bar"></span></div>
         </div>
-        <div class="quiz-timer-track" aria-hidden="true"><span id="timer-bar"></span></div>
 
         <form id="answer-form">
           <fieldset class="quiz-fieldset">
             <legend id="question-title">Pergunta</legend>
             <div class="quiz-options" id="question-options"></div>
           </fieldset>
-          <p class="quiz-form__error" id="answer-error" role="alert"></p>
-          <button class="quiz-button quiz-button--primary" id="answer-button" type="submit" disabled>CONFIRMAR RESPOSTA</button>
+          <div class="quiz-answer-actions">
+            <p class="quiz-form__error" id="answer-error" role="alert"></p>
+            <button class="quiz-button quiz-button--primary" id="answer-button" type="submit" disabled>CONFIRMAR RESPOSTA</button>
+            <p class="quiz-question__note">A resposta certa será revelada somente no resultado final.</p>
+          </div>
         </form>
-        <p class="quiz-question__note">A resposta certa será revelada somente no resultado final.</p>
       </section>
 
       <section class="quiz-view quiz-result" id="view-result" hidden aria-labelledby="result-title">
@@ -161,6 +165,6 @@
     <p>Promoção exclusiva Rusty Pub. Consumo responsável para maiores de 18 anos.</p>
   </footer>
 
-  <script type="module" src="/js/quiz.js?v=1"></script>
+  <script type="module" src="/js/quiz.js?v=2"></script>
 </body>
 </html>

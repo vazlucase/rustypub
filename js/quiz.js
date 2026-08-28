@@ -77,6 +77,9 @@ function showView(view, announcement = '') {
   views.forEach(item => { item.hidden = item !== view; });
   activeView = view;
   if (announcement) announce(announcement);
+  if (view !== introView) {
+    window.scrollTo(0, 0);
+  }
   const heading = view.querySelector('h1, legend');
   if (heading && view !== introView) {
     heading.setAttribute('tabindex', '-1');
