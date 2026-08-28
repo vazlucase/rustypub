@@ -55,7 +55,7 @@ test('tokens de alternativa são opacos, estáveis e vinculados à tentativa', (
   assert.doesNotMatch(first, /colarinho|q01|attempt/i);
 });
 
-test('ordem das alternativas é determinística por tentativa e varia entre tentativas', () => {
+test('ordem das alternativas é determinística por tentativa e varia entre tentativas legadas', () => {
   const question = QUESTIONS[0];
   const baseline = deterministicOptionOrder(SECRET, CAMPAIGN_ID, 'attempt-1', question).map(option => option.id);
   const repeated = deterministicOptionOrder(SECRET, CAMPAIGN_ID, 'attempt-1', question).map(option => option.id);
@@ -68,6 +68,34 @@ test('ordem das alternativas é determinística por tentativa e varia entre tent
     ))
   );
   assert.ok(variants.size > 1);
+});
+
+test('os 24 slots entregam todas as ordens possíveis sem repetição', () => {
+  const question = QUESTIONS[0];
+  const variants = Array.from({ length: 24 }, (_, slot) =>
+    deterministicOptionOrder(SECRET, CAMPAIGN_ID, `attempt-${slot}`, question, slot).map(option => option.id)
+  );
+
+  assert.equal(new Set(variants.map(JSON.stringify)).size, 24);
+  assert.ok(variants.every(order => order.length === 4 && new Set(order).size === 4));
+});
+
+test('slot mantém ordem estável no reload e usa offsets por pergunta', () => {
+  const first = deterministicOptionOrder(SECRET, CAMPAIGN_ID, 'attempt-1', QUESTIONS[0], 7).map(option => option.id);
+  const repeated = deterministicOptionOrder(SECRET, CAMPAIGN_ID, 'attempt-1', QUESTIONS[0], '7').map(option => option.id);
+  const sharedOptions = ['a', 'b', 'c', 'd'].map(id => ({ id, text: id }));
+  const sequenceByQuestion = Array.from({ length: 16 }, (_, index) => JSON.stringify(
+    deterministicOptionOrder(
+      SECRET,
+      CAMPAIGN_ID,
+      'attempt-1',
+      { id: `question-${index}`, options: sharedOptions },
+      7
+    ).map(option => option.id)
+  ));
+
+  assert.deepEqual(first, repeated);
+  assert.ok(new Set(sequenceByQuestion).size > 1);
 });
 
 test('comparação segura distingue valores sem lançar para tamanhos diferentes', () => {

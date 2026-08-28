@@ -48,7 +48,13 @@ export default async function handler(request, response) {
     const deadlineAt = now + config.questionSeconds * 1000;
     const result = await redis.eval(
       START_ATTEMPT_SCRIPT,
-      [keys.participant(phoneHash), keys.device(deviceHash), keys.attempt(attemptId), keys.session(sessionHash)],
+      [
+        keys.participant(phoneHash),
+        keys.device(deviceHash),
+        keys.attempt(attemptId),
+        keys.session(sessionHash),
+        keys.optionOrderSequence
+      ],
       [attemptId, String(config.retentionSeconds), name, config.questionVersion, String(now), String(deadlineAt)]
     );
 

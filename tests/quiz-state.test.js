@@ -31,7 +31,8 @@ test('estado ativo entrega apenas a pergunta atual', () => {
     nextIndex: '3',
     score: '2',
     results: '110',
-    deadlineAt: '123456'
+    deadlineAt: '123456',
+    optionOrderSlot: '7'
   });
 
   assert.equal(state.status, 'active');
@@ -40,6 +41,8 @@ test('estado ativo entrega apenas a pergunta atual', () => {
   assert.equal('score' in state, false);
   assert.equal('answers' in state, false);
   assert.equal('ticket' in state, false);
+  assert.equal('optionOrderSlot' in state, false);
+  assert.doesNotMatch(JSON.stringify(state), /optionOrderSlot/);
 });
 
 test('estado final expõe apenas mapa booleano e pontuação', () => {

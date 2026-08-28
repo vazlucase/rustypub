@@ -100,3 +100,19 @@ test('scripts Lua reservam vaga e resgatam ticket em operações atômicas', asy
   assert.match(scripts, /if status == 'redeemed'/);
   assert.match(scripts, /'redeemed_now'/);
 });
+
+test('novas tentativas recebem slots atômicos para as 24 ordens possíveis', async () => {
+  const [startApi, scripts, keys] = await Promise.all([
+    read('api/quiz/start.js'),
+    read('lib/quiz/scripts.js'),
+    read('lib/quiz/keys.js')
+  ]);
+  const startScript = scripts.slice(0, scripts.indexOf('export const ANSWER_SCRIPT'));
+
+  assert.match(keys, /optionOrderSequence/);
+  assert.match(startApi, /keys\.optionOrderSequence/);
+  assert.match(startScript, /redis\.call\('INCR', KEYS\[5\]\)/);
+  assert.match(startScript, /% 24/);
+  assert.match(startScript, /'optionOrderSlot', optionOrderSlot/);
+  assert.ok(startScript.indexOf("return {'resume'") < startScript.indexOf("redis.call('INCR'"));
+});
