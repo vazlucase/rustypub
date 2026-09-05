@@ -1,0 +1,13 @@
+import { chromium } from 'playwright-core';
+const edgePath = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
+const browser = await chromium.launch({ executablePath: edgePath, headless: true });
+const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+await page.goto('http://localhost:4173/quiz.html', { waitUntil: 'networkidle' });
+await page.waitForTimeout(600);
+await page.screenshot({ path: 'quiz-final-mobile.png', fullPage: true });
+const page2 = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+await page2.goto('http://localhost:4173/quiz.html', { waitUntil: 'networkidle' });
+await page2.waitForTimeout(600);
+await page2.screenshot({ path: 'quiz-final-desktop.png', fullPage: true });
+await browser.close();
+console.log('ok');

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/css/lp.css?v=2">
-  <link rel="stylesheet" href="/css/quiz.css?v=2">
+  <link rel="stylesheet" href="/css/quiz.css?v=3">
 </head>
 <body class="quiz-page">
   <a class="skip-link" href="#quiz-main">Pular para o quiz</a>
@@ -94,10 +94,21 @@
           <div class="quiz-question__top">
             <p class="quiz-progress-label" id="question-progress">Pergunta 1 de 15</p>
             <div class="quiz-timer" id="quiz-timer" role="timer" aria-live="off" aria-label="30 segundos restantes">
-              <span id="timer-value">30</span><small>s</small>
+              <svg class="quiz-timer__ring" viewBox="0 0 84 84" aria-hidden="true">
+                <defs>
+                  <linearGradient id="quiz-timer-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#ffe08a"/>
+                    <stop offset="0.5" stop-color="#f0ad32"/>
+                    <stop offset="1" stop-color="#b76a1e"/>
+                  </linearGradient>
+                </defs>
+                <circle class="quiz-timer__ring-track" cx="42" cy="42" r="36"></circle>
+                <circle class="quiz-timer__ring-bar" id="timer-ring-bar" cx="42" cy="42" r="36"></circle>
+              </svg>
+              <span class="quiz-timer__number"><span id="timer-value">30</span><small>s</small></span>
             </div>
           </div>
-          <div class="quiz-timer-track" aria-hidden="true"><span id="timer-bar"></span></div>
+          <div class="quiz-progress-bar" aria-hidden="true"><span class="quiz-progress-bar__fill" id="quiz-progress-fill"></span></div>
         </div>
 
         <form id="answer-form">
@@ -165,6 +176,6 @@
     <p>Promoção exclusiva Rusty Pub. Consumo responsável para maiores de 18 anos.</p>
   </footer>
 
-  <script type="module" src="/js/quiz.js?v=2"></script>
+  <script type="module" src="/js/quiz.js?v=3"></script>
 </body>
 </html>

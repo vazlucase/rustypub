@@ -26,11 +26,13 @@ const phoneInput = document.querySelector('#quiz-phone');
 const termsInput = document.querySelector('#quiz-terms');
 const adultInput = document.querySelector('#quiz-adult');
 const questionProgress = document.querySelector('#question-progress');
+const progressFill = document.querySelector('#quiz-progress-fill');
 const questionTitle = document.querySelector('#question-title');
 const questionOptions = document.querySelector('#question-options');
 const timer = document.querySelector('#quiz-timer');
 const timerValue = document.querySelector('#timer-value');
-const timerBar = document.querySelector('#timer-bar');
+const timerRingBar = document.querySelector('#timer-ring-bar');
+const RING_CIRCUMFERENCE = 226.19; // 2 * π * 36
 const answerError = document.querySelector('#answer-error');
 const startError = document.querySelector('#start-error');
 
@@ -216,6 +218,10 @@ function renderQuestion(question, questionSeconds) {
   answerError.textContent = '';
   answerButton.disabled = true;
   questionProgress.textContent = `Pergunta ${question.number} de ${question.total}`;
+  if (progressFill) {
+    const total = Number(question.total) || 15;
+    progressFill.style.width = `${((Number(question.number) - 1) / total) * 100}%`;
+  }
   questionTitle.textContent = question.text;
   questionOptions.replaceChildren(...question.options.map((option, index) => createOption(option, index)));
   showView(questionView, `Pergunta ${question.number} de ${question.total}. Você tem ${questionSeconds} segundos.`);
@@ -261,7 +267,7 @@ function startTimer(deadlineAt, totalSeconds) {
     const remaining = Math.max(0, deadlineAt - estimatedServerNow());
     const seconds = Math.ceil(remaining / 1000);
     const ratio = Math.max(0, Math.min(1, remaining / duration));
-    timerBar.style.transform = `scaleX(${ratio})`;
+    timerRingBar.style.strokeDashoffset = `${RING_CIRCUMFERENCE * (1 - ratio)}`;
     if (lastDisplayed !== seconds) {
       timerValue.textContent = String(seconds);
       timer.setAttribute('aria-label', `${seconds} ${seconds === 1 ? 'segundo restante' : 'segundos restantes'}`);
@@ -269,7 +275,6 @@ function startTimer(deadlineAt, totalSeconds) {
     }
     const low = remaining <= 10000;
     timer.classList.toggle('is-low', low);
-    timerBar.classList.toggle('is-low', low);
     if (remaining <= 0) {
       if (!deadlineSubmitted) {
         deadlineSubmitted = true;
