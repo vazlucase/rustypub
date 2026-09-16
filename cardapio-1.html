@@ -7,7 +7,7 @@
 <title>Cardápio · Rusty Pub</title>
 <!-- Página oculta: acessível apenas via QR Code na mesa. Não indexar. -->
 <meta content="noindex, nofollow" name="robots"/>
-<meta content="#050505" name="theme-color"/>
+<meta content="#0a0705" name="theme-color"/>
 <meta content="Cardápio digital do Rusty Pub — comidas, hambúrgueres, pizzas, drinks e cervejas." name="description"/>
 <!-- CSP: mesma política da home -->
 <meta content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'" http-equiv="Content-Security-Policy"/>
@@ -22,9 +22,8 @@
 <link as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="preload"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'" rel="stylesheet"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"/></noscript>
-
 <link href="/css/lp.css?v=2" rel="stylesheet"/>
-<link href="/css/cardapio.css" rel="stylesheet"/>
+<link href="/css/cardapio-1.css" rel="stylesheet"/>
 </head>
 <body class="menu-page">
 <a class="skip-link" href="#menu-conteudo">Pular para o cardápio</a>
@@ -32,7 +31,7 @@
 <header class="mp-header" id="mp-header" role="banner">
 <div class="mp-header__bar">
 <a class="mp-header__brand" href="#topo">
-
+<img alt="" aria-hidden="true" class="mp-header__logo" height="31" src="/assets/rusty-sm.webp" width="34"/>
 <span class="mp-header__name">RUSTY<em>PUB</em></span>
 </a>
 </div>
@@ -42,7 +41,7 @@
 <!-- HERO compacto -->
 <section aria-labelledby="mp-hero-title" class="mp-hero">
 <h1 class="mp-hero__title" id="mp-hero-title">CARDÁPIO</h1>
-<p class="mp-hero__sub">Do petisco ao último gole — tudo preparado com capricho. 🤘<br>Clique no item para ver mais detalhes. 🍻</p>
+<p class="mp-hero__sub">Do petisco ao último gole — tudo preparado com capricho. 🤘</p>
 <div aria-hidden="true" class="mp-hero__stamp">
 <span>RUSTY</span>
 <small>PUB</small>
@@ -317,7 +316,7 @@
 <button aria-label="Voltar ao topo" class="mp-top" hidden="" id="mp-top" type="button">
 <svg aria-hidden="true" class="icon" fill="currentColor" focusable="false" height="1em" viewbox="0 0 384 512" width="1em"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path></svg>
 </button>
-<!-- Script externo original: adicione ./cardapio.js se disponível. -->
+<script defer="" src="/js/cardapio.js"></script>
 <script>
 (() => {
   const modal = document.getElementById('mp-product-modal');
@@ -516,14 +515,9 @@
 </script>
 
 <script>
-(() => {
-  const topButton = document.getElementById('mp-top');
-  if (!topButton) return;
-  const update = () => { topButton.hidden = window.scrollY < 500; };
-  window.addEventListener('scroll', update, { passive: true });
-  topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  update();
-})();
-</script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+    }
+  </script>
 </body>
 </html>
