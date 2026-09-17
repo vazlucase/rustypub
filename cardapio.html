@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'" rel="stylesheet"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet"/></noscript>
 <link href="/css/lp.css?v=1" rel="stylesheet"/>
-<link href="/css/cardapio.css?v=2" rel="stylesheet"/>
+<link href="/css/cardapio.css?v=3" rel="stylesheet"/>
 <!-- Prevenção de cache - força atualização de preços -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -46,10 +46,10 @@
 <section aria-labelledby="mp-hero-title" class="mp-hero">
 <h1 class="mp-hero__title" id="mp-hero-title">CARDÁPIO</h1>
 <p class="mp-hero__sub">Do petisco ao último gole — tudo preparado com capricho. 🤘</p>
-<div aria-hidden="true" class="mp-hero__stamp">
-<span>RUSTY</span>
-<small>PUB</small>
-</div>
+<button aria-controls="mp-promos-modal" aria-haspopup="dialog" aria-label="Ver promoções da semana" class="mp-hero__stamp mp-hero__stamp--promo" id="mp-promos-trigger" type="button">
+<span>PROMOÇÕES</span>
+<small>VER OFERTAS ↗</small>
+</button>
 </section>
 <div class="mp-menu-switch-wrap">
 <div aria-label="Escolha entre comidas e bebidas" class="mp-menu-switch" role="tablist">
@@ -316,6 +316,73 @@
 <button class="mp-product-modal__done" data-modal-close="" type="button">Voltar ao cardápio</button>
 </section>
 </div>
+<!-- ─── Promoções semanais: abertas pelo selo no topo ─── -->
+<div class="mp-product-modal mp-promos-modal" hidden id="mp-promos-modal">
+<div class="mp-product-modal__backdrop" data-promos-close=""></div>
+<section aria-describedby="mp-promos-intro" aria-labelledby="mp-promos-title" aria-modal="true" class="mp-product-modal__card mp-promos-modal__card" role="dialog" tabindex="-1">
+<div aria-hidden="true" class="mp-product-modal__handle"></div>
+<button aria-label="Fechar promoções" class="mp-product-modal__close" data-promos-close="" type="button">×</button>
+<div class="mp-product-modal__eyebrow">RUSTY PUB <span class="mp-product-modal__hint">OFERTAS DA SEMANA</span></div>
+<h2 id="mp-promos-title">PROMOÇÕES</h2>
+<p class="mp-promos-modal__intro" id="mp-promos-intro">Escolha seu dia e aproveite. Nos dias de gin em dobro, pague R$ 39,90 e receba dois gins do sabor anunciado.</p>
+<div class="mp-promos-modal__today" id="mp-promos-today" aria-live="polite"></div>
+<ul class="mp-promos-modal__days" aria-label="Promoções por dia da semana">
+<li class="mp-promos-modal__day" data-promo-day="1" data-promo-summary="Gin Tropical em dobro: 2 por R$ 39,90.">
+<div class="mp-promos-modal__day-head"><h3>Segunda-feira</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Gin Tropical</strong><span class="mp-promos-modal__price">2 por R$ 39,90</span>
+<small>GIN EM DOBRO · Pague 1 gin e leve 2.</small>
+</div>
+</li>
+<li class="mp-promos-modal__day" data-promo-day="2" data-promo-summary="Gin Tropical em dobro: 2 por R$ 39,90.">
+<div class="mp-promos-modal__day-head"><h3>Terça-feira</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Gin Tropical</strong><span class="mp-promos-modal__price">2 por R$ 39,90</span>
+<small>GIN EM DOBRO · Pague 1 gin e leve 2.</small>
+</div>
+</li>
+<li class="mp-promos-modal__day" data-promo-day="3" data-promo-summary="Gin Melancita em dobro: 2 por R$ 39,90.">
+<div class="mp-promos-modal__day-head"><h3>Quarta-feira</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Gin Melancita</strong><span class="mp-promos-modal__price">2 por R$ 39,90</span>
+<small>GIN EM DOBRO · Pague 1 gin e leve 2.</small>
+</div>
+</li>
+<li class="mp-promos-modal__day" data-promo-day="4" data-promo-summary="Caipirinha em promoção. Consulte o valor.">
+<div class="mp-promos-modal__day-head"><h3>Quinta-feira</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Caipirinha</strong><span class="mp-promos-modal__price">Consulte o valor</span>
+<small>PROMOÇÃO · O preço promocional ainda não foi informado.</small>
+</div>
+</li>
+<li class="mp-promos-modal__day" data-promo-day="5" data-promo-summary="Não há promoção cadastrada para sexta-feira.">
+<div class="mp-promos-modal__day-head"><h3>Sexta-feira</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Sem promoção cadastrada</strong><span class="mp-promos-modal__price">—</span>
+<small>AGENDA · Confira as ofertas dos outros dias.</small>
+</div>
+</li>
+<li class="mp-promos-modal__day" data-promo-day="6" data-promo-summary="Chopp triplo por R$ 19,90.">
+<div class="mp-promos-modal__day-head"><h3>Sábado</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Chopp triplo</strong><span class="mp-promos-modal__price">R$ 19,90</span>
+<small>PROMOÇÃO · Oferta especial de sábado.</small>
+</div>
+</li>
+<li class="mp-promos-modal__day" data-promo-day="0" data-promo-summary="Gin Paradise em dobro: 2 por R$ 39,90. Chopp triplo: consulte o valor.">
+<div class="mp-promos-modal__day-head"><h3>Domingo</h3><span class="mp-promos-modal__today-badge" hidden>HOJE</span></div>
+<div class="mp-promos-modal__offer">
+<strong>Gin Paradise</strong><span class="mp-promos-modal__price">2 por R$ 39,90</span>
+<small>GIN EM DOBRO · Pague 1 gin e leve 2.</small>
+</div><div class="mp-promos-modal__offer">
+<strong>Chopp triplo</strong><span class="mp-promos-modal__price">Consulte o valor</span>
+<small>PROMOÇÃO · Valor promocional não informado para domingo.</small>
+</div>
+</li>
+</ul>
+<button class="mp-product-modal__done" data-promos-close="" type="button">Voltar ao cardápio</button>
+</section>
+</div>
 <!-- Botão voltar ao topo -->
 <button aria-label="Voltar ao topo" class="mp-top" hidden="" id="mp-top" type="button">
 <svg aria-hidden="true" class="icon" fill="currentColor" focusable="false" height="1em" viewbox="0 0 384 512" width="1em"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path></svg>
@@ -422,6 +489,83 @@
         event.preventDefault();
         first.focus();
       }
+    }
+  });
+})();
+</script>
+<script>
+// Promoções: dia da semana no fuso do estabelecimento (Belém/PA).
+(() => {
+  const trigger = document.getElementById('mp-promos-trigger');
+  const modal = document.getElementById('mp-promos-modal');
+  if (!trigger || !modal) return;
+
+  const card = modal.querySelector('.mp-promos-modal__card');
+  const closeButton = modal.querySelector('.mp-product-modal__close');
+  const todayMessage = document.getElementById('mp-promos-today');
+  const dayCards = [...modal.querySelectorAll('[data-promo-day]')];
+  const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let closingTimer;
+
+  const getDayInBelem = () => {
+    try {
+      const weekday = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Belem', weekday: 'long'
+      }).format(new Date());
+      const value = weekDays.indexOf(weekday);
+      return value === -1 ? new Date().getDay() : value;
+    } catch (_) {
+      return new Date().getDay();
+    }
+  };
+
+  const open = () => {
+    window.clearTimeout(closingTimer);
+    const today = getDayInBelem();
+    dayCards.forEach((item) => {
+      const isToday = Number(item.dataset.promoDay) === today;
+      item.classList.toggle('is-today', isToday);
+      item.querySelector('.mp-promos-modal__today-badge').hidden = !isToday;
+      if (isToday) todayMessage.textContent = 'HOJE · ' + item.dataset.promoSummary;
+    });
+    card.scrollTop = 0;
+    modal.hidden = false;
+    document.body.classList.add('mp-modal-open');
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+    closeButton.focus({ preventScroll: true });
+  };
+
+  const close = () => {
+    if (modal.hidden) return;
+    modal.classList.remove('is-open');
+    document.body.classList.remove('mp-modal-open');
+    // Retorna o foco imediatamente: os elementos do diálogo não ficam acessíveis após fechá-lo.
+    trigger.focus({ preventScroll: true });
+    window.clearTimeout(closingTimer);
+    closingTimer = window.setTimeout(() => { modal.hidden = true; }, 240);
+  };
+
+  trigger.addEventListener('click', open);
+  modal.addEventListener('click', (event) => {
+    if (event.target.closest('[data-promos-close]')) close();
+  });
+  modal.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      close();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const controls = [...card.querySelectorAll('button:not([disabled]), [href]')];
+    if (!controls.length) return;
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
     }
   });
 })();
