@@ -2,7 +2,7 @@
    RUSTY PUB — CARDÁPIO DIGITAL V3
    Visual editorial / pub premium / mobile first
    Mantém compatibilidade com o HTML e JS existentes.
-   Versão 2026.09.17-1 - Atualização cache buster
+   Versão 2026.09.17-2 - Tipografia mobile ampliada
    ========================================================== */
 
 .menu-page {
@@ -1767,5 +1767,50 @@ body.mp-modal-open {
 
   .mp-menu-switch__tab {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================
+   V6 — LEGIBILIDADE DOS NOMES E PREÇOS NO MOBILE
+   Altera apenas a apresentação em telas com até 559px.
+   ========================================================== */
+@media (max-width: 559px) {
+  /* Mais espaço para o nome sem sobrepor o preço. */
+  .mp-item__head,
+  .mp-pizza-card__top {
+    gap: 10px;
+  }
+
+  .mp-item__head > strong,
+  .mp-item--inline > strong,
+  .mp-pizza-card__top > strong {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  /* Comidas, bebidas, adicionais e pizzas. */
+  .mp-item strong,
+  .mp-item--inline strong,
+  .mp-pizza-card__top strong {
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  .mp-item__price {
+    flex: 0 0 auto;
+    min-width: 0;
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .mp-item__price::before {
+    color: #b5a18b;
+    font-size: .8rem;
+  }
+
+  .mp-item--inline {
+    gap: 10px;
   }
 }
